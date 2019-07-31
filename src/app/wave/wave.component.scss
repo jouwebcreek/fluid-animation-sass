@@ -18,7 +18,7 @@
 }
 
 .cup {
-    /*Cup styles*/
+    /*Container styles*/
     width: 80%;
     height: 80%;
     border-radius: 0 0 9px 9px;
@@ -27,6 +27,7 @@
     display: flex;
     align-items: flex-end;
 
+    /*Fill styles*/
     .fill {
         animation: wave 3s ease 1 normal forwards;
         width: 100%;
@@ -35,6 +36,8 @@
     }
 }
 
+
+// Dynamic keyframe to avoid unnecesary code
 @keyframes wave {
     0% {
         height: 0; 
