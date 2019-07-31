@@ -1,25 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-wave',
   templateUrl: './wave.component.html',
   styleUrls: ['./wave.component.scss']
 })
+
 export class WaveComponent implements OnInit {
 
   @Input('fill') fillPercent: number;
-  animationStyle = { };
+  
 
 
-  constructor() { }
-
-  ngOnInit() {
+  @HostBinding("attr.style")
+    public get valueAsStyle(): any {
+    return this.sanitizer.bypassSecurityTrustStyle('--some-var:' + this.fillPercent + '%');
   }
 
-  setPercentage() {
-    let percentage = this.fillPercent;
-    this.animationStyle = { 'animation': 'wave' + percentage + ' 3s ease 1 normal forwards' }
-    return this.animationStyle;
+  constructor(private sanitizer: DomSanitizer) {}
+
+
+  ngOnInit() {
   }
 
 }
